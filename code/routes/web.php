@@ -31,7 +31,7 @@ Route::post('/search/city', [CitySearchController::class, 'searchByCityPost'])->
 
 // search by lat and long
 Route::get('/search/lat-long', [CitySearchController::class, 'searchByLatLong'])->name('searchByLatLong');
-Route::post('search/lat-long', [CitySearchController::class, 'searchByLatLongPost'])->name('searchByLatLongPost');
+Route::post('/search/lat-long', [CitySearchController::class, 'searchByLatLongPost'])->name('searchByLatLongPost');
 
 // Interactive search by using map
 Route::get('/search/map', [CitySearchController::class, 'searchByMap'])->name('searchByMap');

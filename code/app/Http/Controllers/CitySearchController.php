@@ -8,6 +8,7 @@ use Exception;
 
 class CitySearchController extends Controller
 {
+    // =========================================================
     public function load()
     {
         // Set maximum execution time of script to 5 minutes
@@ -46,11 +47,34 @@ class CitySearchController extends Controller
             'cities' => $cities,
         ]);
     }
+    // =========================================================
 
     public function searchByCity(Request $request)
     {
-        return view('search-by-city');
+        // Retrieve the result parameter from the request
+        $result = $request->input('result');
+
+        // You can also pass the result to the view if needed
+        return view('search-by-city', ['result' => $result]);
     }
+
+    public function searchByCityPost(Request $request) {
+        // Get the city
+        $city = $request->input('city');
+
+        // Get it's lat and long
+        $record = Information::where('city', $city)->first();
+        $record_array = json_decode($record, true);
+        $lat = $record_array['latitude'];
+        $long = $record_array['longitude'];
+
+        // Run the helper function
+        $result = $this->closestCityFinder($lat, $long);
+
+        // Redirect to the desired route with the sorted result
+        return redirect()->route('searchByCity', ['result' => $result]);
+    }
+    // =========================================================
 
     public function searchByLatLong(Request $request)
     {
@@ -66,6 +90,25 @@ class CitySearchController extends Controller
         $lat = (float) $request->input("lat");
         $long = (float) $request->input("long");
 
+        $result = $this->closestCityFinder($lat, $long);
+
+        // Redirect to the desired route with the sorted result
+        return redirect()->route('searchByLatLong', ['result' => $result]);
+    }
+    // =========================================================
+
+    public function searchByMap(Request $request)
+    {
+        return view('search-by-map');
+    }
+
+    public function searchByMapPost(Request $request)
+    {
+        return view('search-by-map');
+    }
+    // =========================================================
+
+    private function closestCityFinder($lat, $long) {
         // Extract all records from the database
         $records = Information::offset(350)->take(100)->get();
 
@@ -88,7 +131,7 @@ class CitySearchController extends Controller
                 // echo "latitude {$record_array['latitude']} and longitude: {$record_array['longitude']} <br>";
                 // Set country
                 $city = $record_array['city'];
-                if($city == '') {
+                if ($city == '') {
                     $city = "Anonymous City " . round($distance);
                 }
                 // echo "$city <br><br><br>";
@@ -102,9 +145,7 @@ class CitySearchController extends Controller
         asort($result);
         // slice the array
         $result = array_slice($result, 0, 5, true);
-
-        // Redirect to the desired route with the sorted result
-        return redirect()->route('searchByLatLong', ['result' => $result]);
+        return $result;
     }
 
     // Haversine formula to calculate great-circle distance
@@ -121,10 +162,5 @@ class CitySearchController extends Controller
         $distance = $earthRadius * $c; // Distance in kilometers
 
         return $distance;
-    }
-
-    public function searchByMap(Request $request)
-    {
-        return view('search-by-map');
     }
 }

@@ -18,6 +18,14 @@
         </select>
         <input type="submit" value="Search">
     </form>
+    @if (!empty($result))
+    <p>Following are the cities from our database which are closest to your selected city:</p>
+    @foreach($result as $city => $distance)
+    <ul>
+        <li>City: {{ $city }} ---&gt; Distance: {{ $distance }} Km</li>
+    </ul>
+    @endforeach
+    @endif
 </body>
 
 </html>

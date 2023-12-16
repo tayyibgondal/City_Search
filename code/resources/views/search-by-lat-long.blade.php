@@ -23,7 +23,7 @@
     <p>Following are the cities from our database which are closest to your entered coordinates:</p>
     @foreach($result as $city => $distance)
     <ul>
-        <li>City: {{ $city }} ---&gt; Distance: {{ $distance }}</li>
+        <li>City: {{ $city }} ---&gt; Distance: {{ $distance }} Km</li>
     </ul>
     @endforeach
     @endif
