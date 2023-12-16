@@ -104,7 +104,14 @@ class CitySearchController extends Controller
 
     public function searchByMapPost(Request $request)
     {
-        return view('search-by-map');
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+
+        // Call a helper function to get the closest cities
+        $closestCities = $this->closestCityFinder($lat, $lng);
+
+        // Return the result as JSON
+        return response()->json($closestCities);
     }
     // =========================================================
 
