@@ -1,3 +1,4 @@
+
 /**
  * An event listener is added to listen to tap events on the map.
  * Clicking on the map displays an alert box containing the latitude and longitude
@@ -16,6 +17,8 @@ function setUpClickListener(map) {
            ((coord.lng > 0) ? 'E' : 'W'));
     });
   }
+  
+  
   
   /**
    * Boilerplate map initialization code starts below:
