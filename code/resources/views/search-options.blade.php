@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
     <title>Document</title>
 </head>
 
 <body>
+    <h1>Choose an option for searching!</h1>
     <form action="{{ route('searchByCity') }}" method="get">
         <input type="submit" value="Search by name">
     </form>
