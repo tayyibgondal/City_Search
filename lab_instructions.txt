@@ -1,0 +1,28 @@
+# ========================================================================
+# MongoDB Set up
+
+1. Install php driver from github repository (of same php version, thread safety, and architecture)
+2. Install laravel/mongodb package inside laravel project directory using: composer require mongodb/laravel-mongodb:4.0.0
+3. Update .env file, add the line: MONGODB_URI=mongodb://localhost:27017/
+4. Update config/database.php file in your project: 'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => env('MONGODB_URI'),
+            'database' => 'citiesDB',
+        ] 
+# ========================================================================
+# Create Model and add data to the corresponding collection in database
+
+1. Create a collection inside mongoDB database using compass. (Since I didn't explicitly make migrations)
+2. Use php artisan command to create model.
+3. Change the Model class import line to: use MongoDB\Laravel\Eloquent\Model;
+4. Specify connection, collection, and fillable attributes inside the model. (Note: fillable attribute must be mentioned explicitly)
+5. test this all by adding a record to database collection.
+
+# ========================================================================
+# Import the csv file provided in lab to the mongoDB database's collection.
+
+1. Change the encoding of given csv file to utf-8
+2. Make sure to delete the initial rows from csv file if they don't represent column names.
+
+# ========================================================================
+# Search a record from the database in laravel

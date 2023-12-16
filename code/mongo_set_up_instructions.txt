@@ -1,8 +1,0 @@
-1. Install php driver from github repository (of same php version, thread safety, and architecture)
-2. Install laravel/mongodb package inside laravel project directory using: composer require mongodb/laravel-mongodb:4.0.0
-3. Update .env file, add the line: MONGODB_URI=mongodb://localhost:27017/
-4. Update config/database.php file in your project: 'mongodb' => [
-            'driver' => 'mongodb',
-            'dsn' => env('MONGODB_URI'),
-            'database' => 'citiesDB',
-        ] 
