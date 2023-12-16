@@ -27,12 +27,12 @@ Route::view('/search-options', 'search-options')->name('searchOptions');
 Route::get('/search/city', [CitySearchController::class, 'searchByCity'])
                                     ->middleware('cityMiddleware')
                                     ->name('searchByCity');
-Route::post('/search/city', [CitySearchController::class, 'searchByCity'])->name('searchByCityPost');
+Route::post('/search/city', [CitySearchController::class, 'searchByCityPost'])->name('searchByCityPost');
 
 // search by lat and long
 Route::get('/search/lat-long', [CitySearchController::class, 'searchByLatLong'])->name('searchByLatLong');
-Route::post('search/lat-long', [CitySearchController::class, 'searchByLatLong'])->name('searchByLatLongPost');
+Route::post('search/lat-long', [CitySearchController::class, 'searchByLatLongPost'])->name('searchByLatLongPost');
 
 // Interactive search by using map
 Route::get('/search/map', [CitySearchController::class, 'searchByMap'])->name('searchByMap');
-Route::post('/search/map', [CitySearchController::class, 'searchByMap'])->name('searchByMapPost');
+Route::post('/search/map', [CitySearchController::class, 'searchByMapPost'])->name('searchByMapPost');
