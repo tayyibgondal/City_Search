@@ -12,7 +12,7 @@ City Search Application is a web application built with Laravel and MongoDB that
 
 - **Interactive Map Search:** Click on the map to find the closest cities based on the selected location.
 
-## Main Functions and Concepts Used from Programming Languages
+## Main Concepts Used from Programming Languages
 
 - **PHP (Laravel):**
 
